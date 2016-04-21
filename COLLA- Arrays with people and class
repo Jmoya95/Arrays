@@ -1,0 +1,62 @@
+int grass=height/2;
+
+int x=700;
+int y=700;
+
+People[] person= new People[10];
+
+
+
+void setup() {
+  size(x,y);
+ 
+ for( int a=0; a<=9; a=a+1) {
+ person[a]=new People();
+ }
+}
+
+void draw() {
+  background(198,255,245);
+  
+  fill(77,111,77);
+  rect(0,height/2,width,height); ////adjustices to any size if changed
+  
+  for( int a=0; a<=9; a=a+1) {
+ person[a].person();
+ person[a].move();
+ person[a].bounce();
+ }
+  
+}
+
+class People{
+ float humanX;
+ float humanY;
+ float speedhX;
+ float speedhY;
+ 
+ People() {
+   humanX=random(0,x);
+   humanY=random(y/2, y);
+   speedhX=random(0,7);
+   speedhY=random(0,2);
+ }
+ 
+ void person() {
+   fill(0);
+   rect(humanX,humanY,30,50);
+   }
+ void move() {
+   humanX=humanX+speedhX;
+   humanY=humanY+speedhY;
+ }
+ 
+ void bounce() {
+    if (humanX>x ||humanX<0){  ///boat goes to the left so the numbers become negatives
+    speedhX=-1*speedhX;
+    } 
+   if (humanY>y ||humanY<y/2){  ///boat goes to the left so the numbers become negatives
+    speedhY=-1*speedhY;
+    } 
+}
+}
