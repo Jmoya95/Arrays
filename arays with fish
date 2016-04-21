@@ -1,0 +1,147 @@
+///example of midterm
+ ///By - ANA COLLANTES
+
+int water;
+  int horizon;
+  int boatX;
+  int boatY;
+  
+  int X1=100;
+  int X2=180;
+ 
+  int speedB=1;
+  
+  String author="Ana Collantes";
+  
+  Fish tuna;
+  Fish[] ana=new Fish[5];
+
+int B1;  ///Triangle part of the boat X
+  int B2;  ////triangle part of the boat another X coordinate
+
+void setup() {
+    size(800,600);
+    tuna=new Fish(); 
+    
+    for(int lee=0;lee<=4; lee=lee+1){
+    ana[lee]= new Fish();
+    }
+    
+  }
+
+void draw() {
+    water=height/1;
+    horizon=width/3;
+    scene();
+    boat();
+    tuna.fishes();
+    tuna.move();
+    tuna.bounce();
+   // messages();
+    
+    for(int lee=0;lee<=4; lee=lee+1){
+    ana[lee].fishes();
+    ana[lee].move();
+    ana[lee].bounce();
+    }
+    
+    
+    
+    
+    ///fish();
+  }
+
+void scene() {
+    background(126,213,255);  ///sky
+    
+    fill(34,89,116);
+    rect(0,horizon,800,water);  ///water
+  }
+
+void boat() {
+    fill(99,87,121);
+    noStroke();
+    //rectMode(CENTER);
+    rect(boatX,boatY,100,60); ///boat
+    
+    rect(boatX+40,boatY-22,30,23);
+    
+    triangle(boatX+X1,boatY,boatX+X1,boatY+61,boatX+X2,boatY); ///triangle in the front of the boat
+    
+    
+    
+    boatX=boatX+speedB;  ////moves voat from left to right --> but doesnt comeback
+    boatY=207;
+    
+    if (boatX>800){ X1=0; X2=-80; ///boat goes to the left so the numbers become negatives
+    speedB=-3; 
+    } if (boatX<0) { X1=100; X2=180; ////boat goes to the right same positive numbers
+    speedB=3;  ////random speed???
+    }
+
+}
+
+class Fish {
+ float fishX;
+ float fishY;
+ float speedfX;
+ float speedfY;
+ 
+ float tailX1=37; ////tail of the fish
+ float tailX2=15; ////tail of the fish
+ 
+ float eye=13; ///eye of the fish
+ 
+ float mouthX1=22;
+ ///float mouthX2=25;
+ 
+ Fish() {
+ fishX=random(0,800);
+ fishY=random(290,600);
+ speedfX=random(0,8);
+ speedfY=random(0,1);
+ 
+ }
+ 
+ void fishes() {
+  fill(166,201,183);
+  ellipse(fishX,fishY,50,30); ////body of the fish or tuna
+  
+  triangle(fishX-tailX1,fishY-25,fishX-tailX2,fishY,fishX-tailX1,fishY+25);//tail of the tuna or fish
+  
+  fill(255);
+  ellipse(fishX+eye,fishY-4,7,7); ///the whites of the eyes on the fish
+  
+  fill(0);
+  ellipse(fishX+eye, fishY-4,4,4); ///the black of the eyes of the fish
+  
+  ellipse(fishX+mouthX1,fishY+5,5,4); ////mouth of the fish
+ }
+ 
+ void move() {
+ fishX=fishX+speedfX;
+ fishY=fishY+speedfY;
+ 
+ //if (fishX>800){ tailX1=-37; tailX2=-15; eye=-13; mouthX1=-22;///for the fishes tail to switch places once it touches a corner
+   // speedfX=-1*speedfX;
+   // } if (fishX<0) { tailX1=37; tailX2=15; eye=13; mouthX1=22;///for the fishes tail to switch places once it touches a corner
+    //speedfY=-1*speedfY; 
+    //} 
+ }
+ 
+ void bounce() {
+  if (fishX>800){ tailX1=-37; tailX2=-15; eye=-13; mouthX1=-22;  /// for the fishes to bounce from left to right
+     speedfX=-1*speedfX;
+    } if (fishX<0) {  tailX1=37; tailX2=15; eye=13; mouthX1=22;///for the fishes to bounce from left to right
+     speedfX=-1*speedfX; 
+    }
+    
+ if (fishY>600){  ///for the fishes to bounce up and down
+    speedfY=-1*speedfY;
+    } if (fishY<290) {  ///for the fishes to bounce up and down
+    speedfY=-1*speedfY; 
+ }
+  
+}
+
+}
