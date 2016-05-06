@@ -1,6 +1,12 @@
 ////Brian Witte
 //Project four with the labeled working buttons on it.
-//I have no i dea what makes this different from the button array we made for the ladder for project three, but this one isn't showing up for one reason or another.
+//I have no i dea what makes this different from the button array we made for the ladder for project three, 
+//  but this one isn't showing up for one reason or another.
+
+//BAM:  You told the draw() method to show the bottons.
+//BAM:  I added a loop to call show() for each button
+//        (and also moved them down a bit, to avoid covering the messages).
+
 
 Button [] buttons;
 String buttonNames[]={ "Biggest", "Smallest", "Increase", "Decrease", "Triple", "Randomize"};
@@ -23,6 +29,7 @@ void setup() {
 void makebuttons() {
   buttons= new Button[numButtons];
   float x=150, y=50;
+  y=100;
   for (int j=0; j<numButtons; j++) {
     buttons[j]= new Button(x, y, buttonNames[j]);
     y+=10;
@@ -52,6 +59,11 @@ void draw() {
   text(help, width/4, 40);
   text("Keys: b, s, i, d, t", width/4, 60);
   text(name, 20, height-30);
+  
+  for (int j=0; j<numButtons; j++) {
+    buttons[j].show();
+  }
+  
   
 }
 
